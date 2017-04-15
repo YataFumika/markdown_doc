@@ -5,6 +5,9 @@ CONVERT_TO="html"
 
 for file in `\find ./markdowns/ -name '*.md'`; do
   new_name=${file%.*}.${CONVERT_TO}		
-  pandoc -s $file -o ${new_name}
+  # 別フォーマットへ変換
+  pandoc -s ${file} -o ${new_name}
+  # 変換後のディレクトリへ移動
+  mkdir -p ./${CONVERT_TO}s
   mv ${new_name} ./${CONVERT_TO}s/
 done
